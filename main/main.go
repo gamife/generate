@@ -3,11 +3,11 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"genarate/temps"
-	u "genarate/utils"
 	"github.com/dave/dst"
 	"github.com/dave/dst/decorator"
 	"github.com/dave/dst/dstutil"
+	"github.com/gamife/genarate/temps"
+	u "github.com/gamife/genarate/utils"
 	"go/token"
 	"io"
 	"log"
@@ -69,6 +69,7 @@ func main() {
 		return m
 	})
 	if err != nil {
+		log.Println("service_topic.go 是正确格式,topic是自己写的模块主题")
 		log.Panicln(err)
 	}
 

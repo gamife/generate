@@ -18,11 +18,11 @@ type {{.TopicBig}}Service struct {
 
 type IService interface {
     /*g:k3*/
-	{{.FuncName}}(context.Context, proto.{{.FuncName}}Req) (*proto.{{.FuncName}}Response, error)
+	{{.FuncName}}(c context.Context,req proto.{{.FuncName}}Req) (*proto.{{.FuncName}}Response, error)
 }
 
 /*g:k4*/
-func (s *{{.TopicBig}}Service) {{.FuncName}}(context.Context, proto.{{.FuncName}}Req) (*proto.{{.FuncName}}Response, error){
+func (s *{{.TopicBig}}Service) {{.FuncName}}(c context.Context,req proto.{{.FuncName}}Req) (*proto.{{.FuncName}}Response, error){
 	/*g:k5*/
 	return nil, nil
 }`

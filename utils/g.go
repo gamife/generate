@@ -3,12 +3,11 @@ package utils
 import (
 	"bufio"
 	"bytes"
-	"errors"
 	"fmt"
-	"genarate/temps"
 	"github.com/dave/dst"
 	"github.com/dave/dst/decorator"
 	"github.com/dave/dst/dstutil"
+	"github.com/gamife/genarate/temps"
 	"go/ast"
 	"go/format"
 	"go/parser"
@@ -679,7 +678,7 @@ func ParseDir(path string, filter func(os.FileInfo) bool) (p *dst.Package, d *de
 		p = node.(*dst.Package)
 		return p, d, fset, nil
 	}
-	return nil, nil, nil, errors.New("dst miss packages")
+	return nil, nil, nil, fmt.Errorf("找不到对应目录下的包,path:%s", path)
 }
 
 func ParseFile(filename string, src interface{}) (f *dst.File, d *decorator.Decorator, fset *token.FileSet, err error) {

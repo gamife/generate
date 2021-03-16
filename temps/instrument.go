@@ -41,14 +41,15 @@ func NewTokenBucketLimitterWithBuildIn(bkt *rate.Limiter) endpoint.Middleware {
 
 // metricMiddleware 定义监控中间件，嵌入Service
 // 新增监控指标项：requestCount和requestLatency
-type contractMetricMiddleware struct {
+type $$$MetricMiddleware struct {
 	IService
 	requestCount   metrics.Counter
 	requestLatency metrics.Histogram
 }
 
+// 这里如果是新项目要记得改 main.go里的对应名字
 // Metrics 封装监控方法
-func ContractMetrics(requestCount metrics.Counter, requestLatency metrics.Histogram) ServiceMiddleware {
+func $$$Metrics(requestCount metrics.Counter, requestLatency metrics.Histogram) ServiceMiddleware {
 	return func(next IService) IService {
 		return contractMetricMiddleware{
 			next,
@@ -58,7 +59,7 @@ func ContractMetrics(requestCount metrics.Counter, requestLatency metrics.Histog
 }
 
 /*g:k1*/
-func (mw contractMetricMiddleware) {{.FuncName}}(c context.Context, req proto.{{.FuncName}}Req) (*proto.{{.FuncName}}Response, error) {
+func (mw $$$MetricMiddleware) {{.FuncName}}(c context.Context, req proto.{{.FuncName}}Req) (*proto.{{.FuncName}}Response, error) {
 	defer func(begin time.Time) {
 		lvs := []string{"method", "{{.FuncName}}"}
 		mw.requestCount.With(lvs...).Add(1)
